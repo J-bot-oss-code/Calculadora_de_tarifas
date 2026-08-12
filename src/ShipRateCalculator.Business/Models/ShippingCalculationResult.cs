@@ -1,8 +1,6 @@
 namespace ShipRateCalculator.Business.Models;
 
-/// <summary>
-/// Resultado del cálculo de una tarifa de envío.
-/// </summary>
+
 public class ShippingCalculationResult
 {
     public bool Success { get; set; }

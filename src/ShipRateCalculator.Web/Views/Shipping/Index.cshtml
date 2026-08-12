@@ -1,0 +1,122 @@
+@model ShipRateCalculator.Web.Models.ShippingRequestViewModel
+@{
+    ViewData["Title"] = "Calculadora de Envíos";
+
+    // Obtenemos el nombre del país seleccionado previamente para mantenerlo en el buscador si recarga
+    var selectedCountryName = Model.Countries?.FirstOrDefault(c => c.CountryCode == Model.CountryCode)?.Name ?? "";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert-top">@ViewBag.ErrorMessage</div>
+}
+
+<div class="welcome-box">
+    <h2>Bienvenido a ShipRate</h2>
+    <p>
+        Calcula en segundos el costo de enviar tu paquete al extranjero.
+        Ingresa el peso y busca o selecciona tu país de destino para obtener el cálculo al instante.
+    </p>
+</div>
+
+<!-- PANEL DEL FORMULARIO -->
+<div class="panel">
+    <div class="corner tl"></div>
+    <div class="corner br"></div>
+
+    <form asp-action="Calculate" method="post">
+        <div class="field">
+            <label asp-for="Weight">Peso del paquete</label>
+            <div class="input-shell">
+                <input asp-for="Weight" type="number" step="0.01" min="0.1" placeholder="Ej: 2.5" required />
+                <span class="unit">KG</span>
+            </div>
+            <span asp-validation-for="Weight" class="field-error"></span>
+        </div>
+
+        <div class="field">
+            <label>País de destino (Escribe para buscar)</label>
+            <div class="input-shell">
+                <!-- Input de búsqueda interactivo nativo -->
+                <input list="countryList" id="countrySearch" value="@selectedCountryName" placeholder="Escribe el país (ej. Estados Unidos)..." autocomplete="off" required />
+                <span class="unit" style="font-size: 10px; color: #5C7A94;">BUSCAR</span>
+            </div>
+            <!-- Campo oculto que viaja al controlador con el CountryCode real -->
+            <input type="hidden" asp-for="CountryCode" id="CountryCode" value="@Model.CountryCode" />
+
+            <!-- Lista de opciones para el buscador nativo (soporta cientos de países sin JS pesado) -->
+            <datalist id="countryList">
+                @if (Model.Countries != null)
+                {
+                    foreach (var country in Model.Countries)
+                    {
+                        <option data-code="@country.CountryCode" value="@country.Name"></option>
+                    }
+                }
+            </datalist>
+            <span asp-validation-for="CountryCode" class="field-error"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Calcular tarifa</button>
+    </form>
+</div>
+
+<!-- SEPARADOR VISUAL DE UI/UX -->
+@if (Model.HasResult)
+{
+    <div class="divider">
+        <div class="line"></div>
+        <span>RESULTADO</span>
+        <div class="line"></div>
+    </div>
+
+    <!-- PANEL DE RESULTADOS -->
+    @if (Model.Success)
+    {
+        <div class="panel">
+            <div class="corner tl"></div>
+            <div class="corner br"></div>
+
+            <div class="result-label">
+                <span>Costo estimado</span>
+                <span class="badge">@Model.CountryName</span>
+            </div>
+
+            <div class="cost">
+                $@Model.Cost?.ToString("0.00") <span class="unit-label">USD</span>
+            </div>
+
+            <div class="breakdown">
+                <span class="dot"></span>
+                tarifa aplicada: $@Model.RatePerKg?.ToString("0.00") / kg &nbsp;&rarr;&nbsp; @Model.CountryName
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="panel panel-danger">
+            <div class="corner tl"></div>
+            <div class="corner br"></div>
+
+            <div class="error-heading"><span class="dot"></span>Error en el cálculo</div>
+            <div class="error-text">@Model.ErrorMessage</div>
+        </div>
+    }
+}
+
+<!-- Script nativo para sincronizar el nombre escrito con el CountryCode que procesa el backend -->
+<script>
+    document.getElementById('countrySearch').addEventListener('input', function(e) {
+        const val = e.target.value;
+        const options = document.getElementById('countryList').options;
+        let code = val; // fallback si escriben algo manual
+
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value === val) {
+                code = options[i].getAttribute('data-code');
+                break;
+            }
+        }
+        document.getElementById('CountryCode').value = code;
+    });
+</script>
