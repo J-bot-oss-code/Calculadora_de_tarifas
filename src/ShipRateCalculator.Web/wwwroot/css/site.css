@@ -1,0 +1,513 @@
+/* ShipRate — hoja de estilos futurista
+   Sin dependencias externas (sin CDN, sin Bootstrap): todo el diseño
+   vive en este archivo para que funcione igual online y offline. */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 10%, rgba(0, 229, 255, 0.10), transparent 40%), radial-gradient(circle at 85% 75%, rgba(123, 92, 255, 0.10), transparent 45%), #070B14;
+    background-attachment: fixed;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #EAF6FF;
+}
+
+/* ---------- fondo animado: aviones en vuelo ---------- */
+.plane-field {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.plane {
+    position: absolute;
+    left: 0;
+    animation-name: fly-path;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+    .plane svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+.plane-cyan {
+    color: #00E5FF;
+}
+
+.plane-violet {
+    color: #7B5CFF;
+}
+
+.plane-1 {
+    top: 78%;
+    width: 34px;
+    height: 34px;
+    opacity: 0.16;
+    animation-duration: 38s;
+    animation-delay: -4s;
+}
+
+.plane-2 {
+    top: 55%;
+    width: 24px;
+    height: 24px;
+    opacity: 0.11;
+    animation-duration: 52s;
+    animation-delay: -22s;
+}
+
+.plane-3 {
+    top: 88%;
+    width: 20px;
+    height: 20px;
+    opacity: 0.10;
+    animation-duration: 46s;
+    animation-delay: -14s;
+}
+
+.plane-4 {
+    top: 34%;
+    width: 28px;
+    height: 28px;
+    opacity: 0.13;
+    animation-duration: 60s;
+    animation-delay: -40s;
+}
+
+.plane-5 {
+    top: 68%;
+    width: 18px;
+    height: 18px;
+    opacity: 0.09;
+    animation-duration: 44s;
+    animation-delay: -30s;
+}
+
+@keyframes fly-path {
+    from {
+        transform: translate(-10vw, 8vh);
+    }
+
+    to {
+        transform: translate(110vw, -30vh);
+    }
+}
+
+/* ---------- layout ---------- */
+.sr-page {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 48px 20px 64px;
+}
+
+/* ---------- marca / encabezado ---------- */
+.brand-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.brand-mark {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid #00E5FF;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00E5FF;
+    font-family: "Consolas", "Courier New", monospace;
+    font-weight: 700;
+    font-size: 14px;
+    background: rgba(0, 229, 255, 0.06);
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.25);
+    flex-shrink: 0;
+}
+
+.brand-text h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #EAF6FF;
+    margin: 0;
+}
+
+.brand-text p {
+    font-size: 12px;
+    color: #5C7A94;
+    font-family: "Consolas", "Courier New", monospace;
+    letter-spacing: 0.03em;
+    margin: 2px 0 0;
+}
+
+/* ---------- cuadro de bienvenida ---------- */
+.welcome-box {
+    background: rgba(123, 92, 255, 0.06);
+    border: 1px solid rgba(123, 92, 255, 0.28);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+}
+
+    .welcome-box h2 {
+        font-size: 14px;
+        font-weight: 700;
+        color: #C9BFFF;
+        margin: 0 0 6px;
+        letter-spacing: 0.02em;
+    }
+
+    .welcome-box p {
+        font-size: 13.5px;
+        color: #9AABC0;
+        line-height: 1.55;
+        margin: 0 0 12px;
+    }
+
+.welcome-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+    .welcome-steps .step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12.5px;
+        color: #C4D3E2;
+    }
+
+    .welcome-steps .step-num {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        border-radius: 5px;
+        background: rgba(123, 92, 255, 0.18);
+        border: 1px solid rgba(123, 92, 255, 0.4);
+        color: #C9BFFF;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+/* ---------- cuadro de tip / info ---------- */
+.tip-box {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-left: 3px solid #00E5FF;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    font-size: 12.5px;
+    color: #9AABC0;
+    line-height: 1.5;
+}
+
+    .tip-box .tip-icon {
+        font-family: "Consolas", "Courier New", monospace;
+        color: #00E5FF;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .tip-box strong {
+        color: #C4D3E2;
+    }
+
+/* ---------- panel principal ---------- */
+.panel {
+    position: relative;
+    background: linear-gradient(180deg, rgba(16, 24, 39, 0.9), rgba(10, 15, 26, 0.95));
+    border: 1px solid rgba(0, 229, 255, 0.22);
+    border-radius: 16px;
+    padding: 28px 26px 24px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 20px 60px rgba(0, 229, 255, 0.06);
+}
+
+    .panel.panel-danger {
+        border-color: rgba(226, 75, 74, 0.35);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 20px 60px rgba(226, 75, 74, 0.08);
+    }
+
+.corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: #00E5FF;
+    opacity: 0.85;
+}
+
+.panel-danger .corner {
+    border-color: #E24B4A;
+}
+
+.corner.tl {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-top-left-radius: 8px;
+}
+
+.corner.br {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    border-bottom-right-radius: 8px;
+}
+
+/* ---------- formulario ---------- */
+.field {
+    margin-bottom: 18px;
+}
+
+    .field label {
+        display: block;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 11px;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        color: #5C7A94;
+        margin-bottom: 8px;
+    }
+
+.input-shell {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 229, 255, 0.18);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+}
+
+    .input-shell:focus-within {
+        border-color: #00E5FF;
+    }
+
+    .input-shell input,
+    .input-shell select {
+        flex: 1;
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 13px 14px;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 15px;
+        color: #EAF6FF;
+    }
+
+        .input-shell select option {
+            background: #0B1220;
+            color: #EAF6FF;
+        }
+
+    .input-shell .unit {
+        padding: 0 14px;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 12px;
+        color: #00E5FF;
+        border-left: 1px solid rgba(0, 229, 255, 0.18);
+        height: 46px;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+.field-error {
+    display: block;
+    font-size: 12px;
+    color: #FF8A87;
+    margin-top: 6px;
+    font-family: "Consolas", "Courier New", monospace;
+}
+
+/* ---------- botones ---------- */
+.btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 6px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #00C2E0, #7B5CFF);
+    color: #04121C;
+    box-shadow: 0 8px 24px rgba(0, 194, 224, 0.28);
+}
+
+    .btn-primary:hover {
+        filter: brightness(1.08);
+    }
+
+.btn-outline {
+    background: transparent;
+    color: #9AABC0;
+    border: 1px solid rgba(0, 229, 255, 0.25);
+}
+
+    .btn-outline:hover {
+        border-color: #00E5FF;
+        color: #EAF6FF;
+    }
+
+/* ---------- separador ---------- */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 24px 0 18px;
+}
+
+    .divider .line {
+        flex: 1;
+        height: 1px;
+        background: rgba(0, 229, 255, 0.15);
+    }
+
+    .divider span {
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        color: #3D5A73;
+    }
+
+/* ---------- resultado ---------- */
+.result-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+    .result-label span:first-child {
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 11px;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        color: #5C7A94;
+    }
+
+.badge {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 11px;
+    color: #00E5FF;
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 5px;
+    padding: 2px 8px;
+    letter-spacing: 0.05em;
+}
+
+.cost {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 42px;
+    font-weight: 700;
+    color: #EAF6FF;
+    text-shadow: 0 0 22px rgba(0, 229, 255, 0.35);
+    line-height: 1.15;
+    margin: 4px 0 10px;
+}
+
+    .cost .accent {
+        color: #00E5FF;
+    }
+
+    .cost .unit-label {
+        font-size: 16px;
+        color: #9AABC0;
+    }
+
+.breakdown {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 12.5px;
+    color: #9AABC0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+    .breakdown .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #00E5FF;
+        flex-shrink: 0;
+    }
+
+/* ---------- estado de error ---------- */
+.error-heading {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 13px;
+    color: #FF8A87;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .error-heading .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #E24B4A;
+        box-shadow: 0 0 10px rgba(226, 75, 74, 0.6);
+    }
+
+.error-text {
+    font-size: 14px;
+    color: #C4D3E2;
+    line-height: 1.55;
+}
+
+.alert-top {
+    background: rgba(226, 75, 74, 0.08);
+    border: 1px solid rgba(226, 75, 74, 0.3);
+    border-left: 3px solid #E24B4A;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #FFC2C1;
+}
+
+/* ---------- pie ---------- */
+.footnote {
+    text-align: center;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 10.5px;
+    color: #3D5A73;
+    margin-top: 22px;
+    letter-spacing: 0.03em;
+}

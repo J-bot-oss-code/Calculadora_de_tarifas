@@ -1,10 +1,31 @@
+using ShipRateCalculator.Web.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Registro de servicios (DbContext, repositorios, servicios de negocio,
-// MVC) se configura mañana.
+
+builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
-// Pipeline de middlewares y mapeo de rutas se configura mañana.
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+   
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+
+app.MapControllerRoute(
+    name: "default",
+    
+    pattern: "{controller=Shipping}/{action=Index}/{id?}");
 
 app.Run();

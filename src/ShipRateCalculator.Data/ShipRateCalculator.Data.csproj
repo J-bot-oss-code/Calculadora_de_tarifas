@@ -8,10 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Paquetes NuGet (EF Core, SQL Server) se agregan mañana -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ShipRateCalculator.Business\ShipRateCalculator.Business.csproj" />
     <ProjectReference Include="..\ShipRateCalculator.Domain\ShipRateCalculator.Domain.csproj" />
   </ItemGroup>
 
