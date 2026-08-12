@@ -49,8 +49,11 @@ ShipRateCalculator.Web  --->  ShipRateCalculator.Business  --->  ShipRateCalcula
 - **Data** (acceso a datos / EF Core) conoce a **Domain**.
 - **Domain** (entidades) no conoce a nadie — es el núcleo compartido.
 
-Los diagramas de diseño, de capas y de componentes se documentan en
-`docs/diagramas/` (siguiente paso del proyecto).
+![Diagrama de diseño de la solución](docs/diagramas/diagrama-solucion.png)
+
+![Diagrama en capas](docs/diagramas/diagrama-capas.png)
+
+![Diagrama de componentes](docs/diagramas/diagrama-componentes.png)
 
 ## Estructura del repositorio
 
@@ -62,7 +65,7 @@ ShipRateCalculator/
 ├── src/
 │   ├── ShipRateCalculator.Web/          # Presentación: controladores, vistas, wwwroot/css
 │   ├── ShipRateCalculator.Business/     # Lógica de negocio: validación y cálculo de tarifas
-│   ├── ShipRateCalculator.Data/         # Datos: DbContext, migraciones EF Core, repositorios
+│   ├── ShipRateCalculator.Data/         # Datos: DbContext, scripts SQL, repositorios (sin migrations)
 │   └── ShipRateCalculator.Domain/       # Entidades compartidas (CountryRate, etc.)
 └── docs/
     ├── diagramas/                       # Diagrama de solución, de capas y de componentes
@@ -84,6 +87,10 @@ Agregar un país nuevo, una vez implementado, será un `INSERT` en esta tabla
 (o un formulario de administración) — sin tocar código de negocio ni de
 presentación.
 
+> **Nota:** el esquema de esta tabla se crea y versiona con scripts SQL
+> planos (`src/ShipRateCalculator.Data/Scripts/`), no con EF Core
+> Migrations. Ver el README de `ShipRateCalculator.Data` para el detalle.
+
 ## Cómo clonar y continuar el desarrollo
 
 1. Clonar el repositorio:
@@ -98,11 +105,11 @@ presentación.
    **.NET 8**.
 4. Configurar la cadena de conexión a SQL Server en
    `appsettings.json` / `appsettings.Development.json` del proyecto `Web`.
-5. Ejecutar las migraciones de EF Core:
-   ```bash
-   dotnet ef migrations add InitialCreate --project src/ShipRateCalculator.Data --startup-project src/ShipRateCalculator.Web
-   dotnet ef database update --project src/ShipRateCalculator.Data --startup-project src/ShipRateCalculator.Web
-   ```
+5. Crear la base de datos ejecutando el script
+   `src/ShipRateCalculator.Data/Scripts/001_create_database.sql` en SQL
+   Server (SSMS, Azure Data Studio o `sqlcmd`). **No se usan EF Core
+   Migrations** — ver el README de `ShipRateCalculator.Data` para el
+   detalle de este enfoque *Database First*.
 6. Ejecutar el proyecto `Web` (F5 en Visual Studio).
 
 ## Seguridad y datos de clientes
@@ -117,12 +124,32 @@ presentación.
 - Las consultas a la base de datos se hacen vía EF Core (parametrizadas por
   diseño), evitando inyección SQL.
 
+## Documentación (`docs/`)
+
+La documentación visual del proyecto vive versionada junto al código, no en
+un archivo aparte:
+
+```
+docs/
+├── diagramas/
+│   ├── diagrama-solucion.png       # visión general del sistema
+│   ├── diagrama-capas.png          # presentación / negocio / datos
+│   └── diagrama-componentes.png    # clases, interfaces e interacciones
+└── capturas/
+    └── app-funcional.png           # captura de la app calculando una tarifa
+```
+
+Cada diagrama tiene su versión `.png` (para verse embebido en este README y
+en GitHub) y `.svg` cuando aplique (para impresión o edición). Están
+referenciados abajo, en la sección de arquitectura, y se explican con más
+detalle en el documento de diseño del proyecto.
+
 ## Roadmap
 
 - [x] Repositorio y README inicial
-- [ ] Diagrama de diseño de la solución
-- [ ] Diagrama en capas
-- [ ] Diagrama de componentes
-- [ ] Modelo de datos definitivo y migración inicial
+- [x] Diagrama de diseño de la solución
+- [x] Diagrama en capas
+- [x] Diagrama de componentes
+- [x] Script SQL del modelo de datos (sin migrations)
 - [ ] Implementación de las 4 capas
 - [ ] Captura de la aplicación funcional
