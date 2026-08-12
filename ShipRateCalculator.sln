@@ -1,0 +1,40 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipRateCalculator.Domain", "src\ShipRateCalculator.Domain\ShipRateCalculator.Domain.csproj", "{FD483B10-2734-4ED3-A308-408DD7CC247F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipRateCalculator.Data", "src\ShipRateCalculator.Data\ShipRateCalculator.Data.csproj", "{83825B4F-B966-4DD6-9874-B875DBEEC3C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipRateCalculator.Business", "src\ShipRateCalculator.Business\ShipRateCalculator.Business.csproj", "{D3922B41-C714-4412-90FD-A94153C38068}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipRateCalculator.Web", "src\ShipRateCalculator.Web\ShipRateCalculator.Web.csproj", "{1D1561D5-70ED-4211-87EE-36F39CE06178}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD483B10-2734-4ED3-A308-408DD7CC247F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD483B10-2734-4ED3-A308-408DD7CC247F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD483B10-2734-4ED3-A308-408DD7CC247F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD483B10-2734-4ED3-A308-408DD7CC247F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83825B4F-B966-4DD6-9874-B875DBEEC3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83825B4F-B966-4DD6-9874-B875DBEEC3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83825B4F-B966-4DD6-9874-B875DBEEC3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83825B4F-B966-4DD6-9874-B875DBEEC3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3922B41-C714-4412-90FD-A94153C38068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3922B41-C714-4412-90FD-A94153C38068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3922B41-C714-4412-90FD-A94153C38068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3922B41-C714-4412-90FD-A94153C38068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D1561D5-70ED-4211-87EE-36F39CE06178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D1561D5-70ED-4211-87EE-36F39CE06178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D1561D5-70ED-4211-87EE-36F39CE06178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D1561D5-70ED-4211-87EE-36F39CE06178}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

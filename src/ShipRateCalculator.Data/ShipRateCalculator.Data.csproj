@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ShipRateCalculator.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Paquetes NuGet (EF Core, SQL Server) se agregan mañana -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShipRateCalculator.Domain\ShipRateCalculator.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

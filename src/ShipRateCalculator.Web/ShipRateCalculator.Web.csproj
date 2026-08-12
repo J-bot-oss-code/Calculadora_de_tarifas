@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ShipRateCalculator.Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShipRateCalculator.Business\ShipRateCalculator.Business.csproj" />
+    <ProjectReference Include="..\ShipRateCalculator.Data\ShipRateCalculator.Data.csproj" />
+  </ItemGroup>
+
+</Project>
