@@ -1,0 +1,24 @@
+## .NET / Visual Studio
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.dll
+*.pdb
+
+## Configuración local (cadenas de conexión, secretos)
+appsettings.Development.json
+appsettings.Local.json
+
+## Publicación
+publish/
+*.publish.xml
+
+## SQL Server local
+*.mdf
+*.ldf
+
+## Sistema operativo
+.DS_Store
+Thumbs.db
